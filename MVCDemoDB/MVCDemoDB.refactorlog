@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="a1fdb791-015a-4028-b2fa-9e307569de9c" ChangeDateTime="01/16/2020 17:51:24">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Source" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ddfddeba-0297-4584-9c40-9f3f8f97489c" ChangeDateTime="01/16/2020 17:52:20">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[Source]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="adb9fb96-277d-4f76-b9ca-e5f24913a870" ChangeDateTime="01/16/2020 17:52:23">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Source" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9e783ac0-a4b2-4af0-a1b5-dc6d8d6b7b29" ChangeDateTime="01/16/2020 18:02:27">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[Deadline1]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeadLine1" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e051f708-b9a7-44ca-bf88-16af7948b3d7" ChangeDateTime="01/16/2020 18:02:33">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[Deadline2]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeadLine2" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3c73698a-395f-48e0-9e96-757d12942cb5" ChangeDateTime="01/16/2020 18:02:51">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[DeadlineFinal]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeadLineFinal" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c1f54f20-c48f-4b88-b53c-8c59de5b84e9" ChangeDateTime="01/16/2020 18:17:01">
+    <Property Name="ElementName" Value="[dbo].[BugRecords].[Isresolved]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BugRecords]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsResolved" />
+  </Operation>
+</Operations>

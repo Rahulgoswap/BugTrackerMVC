@@ -1,0 +1,6 @@
+C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\MVCDemoDB\bin\Debug\MVCDemoDB.dacpac
+C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\MVCDemoDB\bin\Debug\MVCDemoDB.dll
+C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\MVCDemoDB\bin\Debug\MVCDemoDB.pdb
+C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\MVCDemoDB\obj\Debug\MVCDemoDB.dll
+C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\MVCDemoDB\obj\Debug\MVCDemoDB.pdb
+C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\MVCDemoDB\obj\Debug\MVCDemoDB.sqlprojAssemblyReference.cache
