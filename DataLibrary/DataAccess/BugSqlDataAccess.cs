@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DataLibrary.Analytics;
 using DataLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,15 @@ namespace DataLibrary.DataAccess
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
                 return cnn.Query<BugModel>(sql).ToList();
+            }
+        }
+
+        public static List<AnalyticsModel> SqlStat(string sql)
+        {
+
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<AnalyticsModel>(sql).ToList();
             }
         }
     }

@@ -7,3 +7,12 @@ C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\DataLibrary\obj\De
 C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\DataLibrary\obj\Debug\DataLibrary.csproj.CopyComplete
 C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\DataLibrary\obj\Debug\DataLibrary.dll
 C:\Users\Rahul Goswami\source\repos\MVCDataFromDatabaseToForm\DataLibrary\obj\Debug\DataLibrary.pdb
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\bin\Debug\DataLibrary.dll
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\bin\Debug\DataLibrary.pdb
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\bin\Debug\Dapper.dll
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\bin\Debug\Dapper.xml
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\obj\Debug\DataLibrary.csprojAssemblyReference.cache
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\obj\Debug\DataLibrary.csproj.CoreCompileInputs.cache
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\obj\Debug\DataLibrary.csproj.CopyComplete
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\obj\Debug\DataLibrary.dll
+F:\App\MVCDataFromDatabaseToFormauth0\DataLibrary\obj\Debug\DataLibrary.pdb

@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\AnalyticsModel.cs" />
     <Compile Include="BusinessLogic\BugProcessor.cs" />
     <Compile Include="BusinessLogic\EmployeeProcessor.cs" />
     <Compile Include="DataAccess\BugSqlDataAccess.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="Models\BugModel.cs" />
+    <Compile Include="Models\CatalogModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
