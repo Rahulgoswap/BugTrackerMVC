@@ -120,19 +120,6 @@
         </div>
     </div>
 }
-@using (Html.BeginForm("ViewPDF", "Home", FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <a href="javascript:;" onclick="document.forms[1].submit();">View PDF</a>
-    <hr />
-    @Html.Raw(TempData["Embed"])
-}
 
 
 <div>

@@ -1,99 +1,37 @@
-﻿@model IEnumerable<DataLibrary.Models.BugModel>
-
+﻿
 @{
     ViewBag.Title = "Dashboard";
 }
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <h2>Dashboard</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr class="table-info">
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Source)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Priority)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deadline1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deadline2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeadLineFinal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ErrorMsg)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AssignTeam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PatchDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsResolved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th></th>
-    </tr>
+<script>
+    var temp1 = '@ViewBag.dataj';
+    var datass = JSON.parse(temp1);
+</script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Source)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Priority)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deadline1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deadline2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeadLineFinal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ErrorMsg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssignTeam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PatchDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsResolved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    function drawChart() {
 
-</table>
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Source');
+        data.addColumn('number', 'Count');
+        data.addRows(datass);
+
+
+        var options = {
+            'title': 'BugsStatus', 'width': 400, 'height': 300
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+    }
+</script>
+<h3>Latest Bugs of the Month</h3>
+<div id="chart_div"></div>
+<div>
+    @Html.Partial("Sim")
+</div>

@@ -22,19 +22,36 @@
             <div class="p-4" >
                 <h1><a href="index.html" class="logo">Bug Tracker<span>for DevTeams</span></a></h1>
                 <ul class="list-unstyled components mb-5" data-spy="affix">
-                    <li class="nav-item">
-                        <span class="fa fa-home mr-3"></span> @Html.ActionLink("Home", "Index", "Home")
-                    </li>
-                    <li class="nav-item">
-                        <span class="fa fa-user mr-3"></span>@Html.ActionLink("Dashboard", "Dashboard", "Home")
-                    </li>
-                    <li class="nav-item">
-                        <span class="fa fa-briefcase mr-3"></span>@Html.ActionLink("View Bugs", "ViewBugs", "Home")
-                    </li>
-                    <li class="nav-item">
-                        <span class="fa fa-briefcase mr-3"></span>@Html.ActionLink("New Bug Report", "CreateIssue", "Home")
-                    </li>
-                    
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <span class="fa fa-home mr-3"></span> @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li class="nav-item">
+                            <span class="fa fa-bar-chart"></span>@Html.ActionLink("Dashboard", "Dashboard", "Home")
+                        </li>
+                        <li class="nav-item">
+                            <span class="fa fa-bug"></span>@Html.ActionLink("View Bugs", "ViewBugs", "Home")
+                        </li>
+                        <li class="nav-item">
+                            <span class="fa fa-calendar-check-o"></span>@Html.ActionLink("New Bug Report", "CreateIssue", "Home")
+                        </li>
+                        
+                        <li class="nav-item">
+                            <span class="fa fa-address-book-o"></span>@Html.ActionLink("Catalog", "Catalog", "Home")
+                        </li>
+
+                        <li class="nav-item">
+                            <span class="fa fa-key"></span>@Html.ActionLink("Logout", "Logout", "Account")
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <span class="fa fa-briefcase mr-3"></span>@Html.ActionLink("Login", "Login", "Account")
+                        </li>
+                    }
+
                 </ul>
                 
                 <div class="footer">

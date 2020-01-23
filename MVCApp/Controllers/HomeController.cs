@@ -1,17 +1,90 @@
-﻿using MVCApp.Models;
+﻿/*using MVCApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataLibrary;
-using static DataLibrary.BusinessLogic.EmployeeProcessor;
+
+
 using static DataLibrary.BusinessLogic.BugProcessor;
+using System.IO;
+using System.Text;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+*/
+using MVCApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using DataLibrary;
+using System.Security.Claims;
+using Auth0.AuthenticationApi;
+
+using static DataLibrary.BusinessLogic.BugProcessor;
+using System.IO;
+using System.Text;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using DataLibrary.Analytics;
+using Newtonsoft.Json;
+
+
 
 namespace MVCApp.Controllers
 {
     public class HomeController : Controller
     {
+
+        public string UserId()
+        {
+            List<string> arr = new List<string>();
+            // The user's ID is available in the NameIdentifier claim
+            foreach (var claim in ((ClaimsIdentity)User.Identity).Claims)
+            {
+                arr.Add(claim.Value);
+            }
+
+            return arr[1];
+        }
+
+
+        public ActionResult Convert(int id)
+        {
+            var report = new Rotativa.ActionAsPdf("PdfView", new { id = id });
+            return report;
+
+        }
+
+        public ActionResult PdfView(int id)
+        {
+            ViewBag.Message = "Update Bug info ";
+
+            List<DataLibrary.Models.BugModel> bm = RemoveBug(id);
+            return View(bm[0]);
+        }
+
+        public ActionResult Login(string returnUrl)
+        {
+            HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties
+            {
+                RedirectUri = returnUrl ?? Url.Action("Index", "Home")
+            },
+                "Auth0");
+            return new HttpUnauthorizedResult();
+        }
+
+        [Authorize]
+        public void Logout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            HttpContext.GetOwinContext().Authentication.SignOut("Auth0");
+        }
+
+
+
         public ActionResult Index()
         {
             return View();
@@ -20,29 +93,44 @@ namespace MVCApp.Controllers
         public ActionResult Dashboard()
 
         {
-            ViewBag.Message = "Bug Dashboard";
-            List<DataLibrary.Models.BugModel> bm = new List<DataLibrary.Models.BugModel>();
-            List<DataLibrary.Models.BugModel> cm = GetUpdates();
-            while (bm.Count <3 && cm.Count>3)
+
+            var res = Getstats();
+            var datachart = new object[res.Count];
+
+            int j = 0;
+            foreach (var i in res)
             {
-                bm.Add(cm[0]);
-                cm.RemoveAt(0);
+                datachart[j] = new object[] { i.Title.ToString(), i.Tres };
+                j++;
             }
-            
-            return View(bm);
+            string datastr = JsonConvert.SerializeObject(datachart, Formatting.None);
+            ViewBag.dataj = new HtmlString(datastr);
+
+            List<DataLibrary.Models.BugModel> bugs = LoadBugs();
+            DataLibrary.Models.BugModel sorter = new DataLibrary.Models.BugModel();
+            bugs.Sort(sorter);
+            return View(bugs);
+        }
+        public ActionResult Sim()
+        {
+
+            List<DataLibrary.Models.BugModel> bugs = LoadBugs();
+            DataLibrary.Models.BugModel sorter = new DataLibrary.Models.BugModel();
+            bugs.Sort(sorter);
+            List<DataLibrary.Models.BugModel> mbugs = new List<DataLibrary.Models.BugModel>();
+            if (bugs.Count >= 3)
+            {
+                mbugs.Add(bugs[0]);
+                mbugs.Add(bugs[1]);
+                mbugs.Add(bugs[0]);
+                return View(mbugs);
+            }
+
+            return View(bugs);
+
         }
 
-        [HttpPost]
-        public ActionResult ViewPDF()
-        {
-            string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"500px\" height=\"300px\">";
-            embed += "If you are unable to view file, you can download from <a href = \"{0}\">here</a>";
-            embed += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
-            embed += "</object>";
-            TempData["Embed"] = string.Format(embed, VirtualPathUtility.ToAbsolute("~/Files/Changes.pdf"));
-            
-            return RedirectToAction("Index");
-        }
+
 
         public ActionResult About()
         {
@@ -100,28 +188,7 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SignUp(EmployeeModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var data = ValidateEmployee(model.FirstName);
-                int x = data.Count;
-                if (data.Count == 0)
-                {
-                    CreateEmployee(model.EmployeeID, model.FirstName, model.LastName, model.Email);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Contact");
-                }
-            }
-
-
-            return View();
-        }
+       
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -181,5 +248,16 @@ namespace MVCApp.Controllers
             RemoveById(id);
             return RedirectToAction("ViewBugs");
         }
+
+        public ActionResult Catalog()
+        {
+            string kx = UserId();
+
+            List<DataLibrary.Models.CatalogModel> dlbm = ViewCatalog(kx);
+
+            return View(dlbm);
+        }
+
+
     }
 }
